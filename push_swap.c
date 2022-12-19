@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/19 18:04:47 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/19 20:33:46 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	check_dup(char *str, char **num, int index)
 	i = 0;
 	while (i < index)
 	{
-		if (!ft_strcmp(str, num[i]))
+		if (ft_atoi(str) == ft_atoi(num[i]))
 			return (false);
 		i++;
 	}
@@ -67,10 +67,19 @@ int	main(int argc, char **argv)
 	(void) argc;
 	pars = parse_args(argv);
 	numbers = ft_split(pars, ' ');
-	if (!check_valid(numbers + 1))
+	numbers++;
+	if (!check_valid(numbers))
 		write(2, "Error\n", 6);
+	else
+	{
+		while (*numbers)
+		{
+			ft_printf("%d\n", ft_atoi(*numbers));
+			numbers++;
+		}
+	}
 	free(pars);
-	system("leaks push_swap");
-	while (1)
-		;
+	// system("leaks push_swap");
+	// while (1)
+		// ;
 }
