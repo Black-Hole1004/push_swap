@@ -6,13 +6,13 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:11:56 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/10/26 16:35:41 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/20 16:04:03 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(int ))
 {
 	if (lst && f)
 	{

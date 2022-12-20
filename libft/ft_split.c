@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 10:30:40 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/19 15:42:09 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:36:49 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	**free_all(char **str)
 		i++;
 	}
 	free(str);
-	return (NULL);
+	return (0);
 }
 
 static int	count_words(const char *str, char charset)
@@ -55,31 +55,29 @@ static int	word_length(const char *str, char charset)
 	return (i);
 }
 
-char	**ft_split(const char *str, char c)
+char	**ft_split(const char *str, char c, int *i)
 {
 	char	**strings;
-	int		i;
 
-	i = 0;
 	if (!str)
-		return (NULL);
+		return (0);
 	strings = (char **)malloc(sizeof(char *) * (count_words(str, c) + 1));
 	if (!strings)
-		return (NULL);
+		return (0);
 	while (*str != '\0')
 	{
 		while (*str != '\0' && *str == c)
 			str++;
 		if (*str != '\0')
 		{
-			strings[i] = ft_substr(str, 0, word_length(str, c));
-			if (!strings[i])
+			strings[*i] = ft_substr(str, 0, word_length(str, c));
+			if (!strings[*i])
 				return (free_all(strings));
-		i++;
+		(*i)++;
 		}
 		while (*str && *str != c)
 			str++;
 	}
-	strings[i] = 0;
+	strings[*i] = 0;
 	return (strings);
 }
