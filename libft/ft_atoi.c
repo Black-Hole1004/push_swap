@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 14:32:05 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/20 14:48:47 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:20:15 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ long	ft_atoi(const char *str)
 {
 	long	result;
 	int		sign;
+
 	result = 0;
 	sign = 1;
 	while (is_whitespace(*str))

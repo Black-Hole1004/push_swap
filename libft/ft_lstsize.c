@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:53:55 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/10/26 16:35:57 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:51:57 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lstsize(t_list *lst)
 
 	temp = lst;
 	count = 0;
-	if (lst == NULL)
+	if (!lst)
 		return (0);
 	while (temp)
 	{

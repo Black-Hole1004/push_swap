@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 10:30:40 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/20 12:36:49 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:56:12 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static char	**free_all(char **str)
 {
@@ -55,29 +55,29 @@ static int	word_length(const char *str, char charset)
 	return (i);
 }
 
-char	**ft_split(const char *str, char c, int *i)
+char	**ft_split(t_vars *vars)
 {
 	char	**strings;
 
-	if (!str)
+	if (!vars->pars)
 		return (0);
-	strings = (char **)malloc(sizeof(char *) * (count_words(str, c) + 1));
+	strings = (char **)malloc(sizeof(char *) * (count_words(vars->pars, ' ') + 1));
 	if (!strings)
 		return (0);
-	while (*str != '\0')
+	while (*vars->pars != '\0')
 	{
-		while (*str != '\0' && *str == c)
-			str++;
-		if (*str != '\0')
+		while (*vars->pars != '\0' && *vars->pars == ' ')
+			vars->pars++;
+		if (*vars->pars != '\0')
 		{
-			strings[*i] = ft_substr(str, 0, word_length(str, c));
-			if (!strings[*i])
+			strings[vars->size_a] = ft_substr(vars->pars, 0, word_length(vars->pars, ' '));
+			if (!strings[vars->size_a])
 				return (free_all(strings));
-		(*i)++;
+		vars->size_a++;
 		}
-		while (*str && *str != c)
-			str++;
+		while (*vars->pars && *vars->pars != ' ')
+			vars->pars++;
 	}
-	strings[*i] = 0;
+	strings[vars->size_a] = 0;
 	return (strings);
 }
