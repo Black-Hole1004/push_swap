@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 14:58:35 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/21 17:50:11 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/22 20:17:48 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdbool.h>
 # include <stdio.h>
 
 void				*ft_memset(void *dest, int c, size_t n);
@@ -63,9 +64,11 @@ typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
+	unsigned int	index;
+	bool			in_lis;
 }					t_list;
 
-t_list				*ft_lstnew(int content);
+t_list				*ft_lstnew(int content, int index);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);

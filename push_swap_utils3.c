@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/21 20:42:02 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/22 21:30:57 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ void	rra(t_vars *vars, bool print)
 {
 	t_list			*temp;
 	unsigned int	size;
+	unsigned int	i = 1;
 
-	size = vars->size_a - 1;
-	if (vars->size_a < 1)
+	size = vars->size_a;
+	if (size < 2)
 		return ;
 	temp = ft_lstlast(vars->stack_a);
-	ft_lstadd_front(&vars->stack_a, ft_lstnew(temp->content));
+	ft_lstadd_front(&vars->stack_a, ft_lstnew(temp->content, 1));
 	free(temp);
 	temp = vars->stack_a;
-	while (size-- > 1)
+	while (i++ < size)
 		temp = temp->next;
 	temp->next = NULL;
 	if (print)
@@ -35,15 +36,16 @@ void	rrb(t_vars *vars, bool print)
 {
 	t_list			*temp;
 	unsigned int	size;
+	unsigned int	i = 1;
 
-	size = vars->size_a - 1;
-	if (vars->size_b < 1)
+	size = vars->size_b;
+	if (size < 2)
 		return ;
 	temp = ft_lstlast(vars->stack_b);
-	ft_lstadd_front(&vars->stack_b, ft_lstnew(temp->content));
+	ft_lstadd_front(&vars->stack_b, ft_lstnew(temp->content, 1));
 	free(temp);
 	temp = vars->stack_b;
-	while (size-- > 1)
+	while (i++ < size)
 		temp = temp->next;
 	temp->next = NULL;
 	if (print)
@@ -66,7 +68,8 @@ void	print_list(t_list *list)
 	i = 0;
 	while (list)
 	{
-		ft_printf("%d\n", list->content);
+		if (list->in_lis)
+			ft_printf("%d\n", list->content);
 		list = list->next;
 		i++;
 	}
