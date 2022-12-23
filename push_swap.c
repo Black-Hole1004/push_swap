@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/23 18:01:36 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:18:55 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ int	*get_lis(t_vars *list, int *lis)
 	unsigned int	i;
 
 	i = 0;
-    while (i++ < list->size_a)
-	{
-        lis[i] = 1;
-    }
+    while (i < list->size_a)
+        lis[i++] = 1;
     t_list *current = list->stack_a->next;
     i = 1;
     while (current != NULL)
@@ -111,9 +109,12 @@ unsigned int lis(t_vars *list)
 	lis = get_lis(list, lis);
     int max = lis[0];
 	i = 0;
-    while (i++ < list->size_a)
+    while (i < list->size_a)
+	{
 		if (lis[i] > max)
             max = lis[i];
+		i++;
+	}
 	unsigned int temp = max;
 	i = 0;
 	while (lis[i] != max)
@@ -148,23 +149,23 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd("\033[31mError\n", 2), 1);
 	while (*vars.numbers)
 	{
-		ft_lstadd_back(&vars.stack_a, ft_lstnew(ft_atoi(*vars.numbers), i));
+		ft_lstadd_back(&vars.stack_a, ft_lstnew(ft_atoi(*vars.numbers), i, 0));
 		vars.numbers++;
 		i++;
 	}
 	i = 0;
+	print_list(vars.stack_a);
+
 	size = lis(&vars);
 	print_list(vars.stack_a);
-	// while (vars.size_a != size)
-	// {
-	// 	if (!vars.stack_a->in_lis)
-	// 		pb(&vars, 1);
-	// 	ra(&vars, 1);
-	// 	i++;
-	// }
-	// while (i--)
-	// 	rra(&vars, 1);
+	while (vars.size_a != size)
+	{
+		if (!vars.stack_a->in_lis)
+			pb(&vars, 1);
+		ra(&vars, 1);
+	}
+	ft_printf("======");
+	print_list(vars.stack_a);
 	// print_list(vars.stack_a);
-	// print_list(vars.stack_a);
-	// system("leaks push_swap | grep total");
+	system("leaks push_swap | grep total");
 }

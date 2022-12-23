@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 14:58:35 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/22 20:17:48 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:05:57 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_list
 	bool			in_lis;
 }					t_list;
 
-t_list				*ft_lstnew(int content, int index);
+t_list				*ft_lstnew(int content, int index, bool in_lis);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);

@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/23 18:01:26 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:11:30 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	rra(t_vars *vars, bool print)
 	if (size < 2)
 		return ;
 	temp = ft_lstlast(vars->stack_a);
-	ft_lstadd_front(&vars->stack_a, ft_lstnew(temp->content, 1));
+	ft_lstadd_front(&vars->stack_a, ft_lstnew(temp->content, 1, temp->in_lis));
 	free(temp);
 	temp = vars->stack_a;
 	while (i++ < size)
@@ -42,7 +42,7 @@ void	rrb(t_vars *vars, bool print)
 	if (size < 2)
 		return ;
 	temp = ft_lstlast(vars->stack_b);
-	ft_lstadd_front(&vars->stack_b, ft_lstnew(temp->content, 1));
+	ft_lstadd_front(&vars->stack_b, ft_lstnew(temp->content, 1, temp->in_lis));
 	free(temp);
 	temp = vars->stack_b;
 	while (i++ < size)
