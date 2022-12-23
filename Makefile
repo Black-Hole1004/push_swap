@@ -6,13 +6,13 @@
 #    By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#              #
-#    Updated: 2022/12/22 14:17:51 by ahmaymou         ###   ########.fr        #
+#    Updated: 2022/12/23 15:05:52 by ahmaymou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PUSH_SWAP
 
-SRCS = push_swap.c push_swap_utils.c push_swap_utils2.c push_swap_utils3.c split_args.c
+SRCS = $(shell ls | grep .c | grep -v checker_Mac)
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -31,7 +31,7 @@ libft_printf :
 	@cd printf && make re && mv libftprintf.a .. && cd ..
 
 prog : push_swap.h
-	$(CC) $(FLAGS) $(SRCS) $(LIBS) -o $(EXEC)
+	$(CC) $(FLAGS) $(SRCS) $(LIBS) -g -o $(EXEC)
 	@rm -rf $(LIBS)
 
 clean :

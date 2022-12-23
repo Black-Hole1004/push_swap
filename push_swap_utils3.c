@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/22 21:30:57 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:01:26 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_list(t_list *list)
 	i = 0;
 	while (list)
 	{
-		if (list->in_lis)
+		// if (list->in_lis)
 			ft_printf("%d\n", list->content);
 		list = list->next;
 		i++;

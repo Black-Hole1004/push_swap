@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/22 21:30:13 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:01:36 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,22 @@ bool	check_valid(char	**num)
 		return (false);
 }
 
+int	*get_lis(t_vars *list, int *lis)
+{
+	unsigned int	i;
 
-int lis(t_vars *list) {
-    // Initialize the LIS array to 1 for all elements
-    int lis[list->size_a];
-	
-    for (unsigned int i = 0; i < list->size_a; i++) {
+	i = 0;
+    while (i++ < list->size_a)
+	{
         lis[i] = 1;
     }
-    // Iterate through the linked list, starting at the second element
     t_list *current = list->stack_a->next;
-    unsigned int i = 1;
-    while (current != NULL) {
-        // For each element, consider the longest increasing subsequence ending at each previous position
+    i = 1;
+    while (current != NULL)
+	{
         t_list *prev = list->stack_a;
         unsigned int j = 0;
         while (prev != current) {
-            // If the element at the previous position is less than the current element and the LIS ending at that
-            // position is longer than the current LIS, update the current LIS
             if (prev->content < current->content && lis[i] < lis[j] + 1) {
                 lis[i] = lis[j] + 1;
             }
@@ -100,13 +98,23 @@ int lis(t_vars *list) {
         current = current->next;
         i++;
     }
-    // Find the maximum value in the LIS array
+	return (lis);
+}
+
+unsigned int lis(t_vars *list)
+{
+	unsigned int	i;
+    int 			*lis;
+	t_list			*current;
+
+	lis = malloc(list->size_a);
+	lis = get_lis(list, lis);
     int max = lis[0];
-    for (unsigned int i = 0; i < list->size_a; i++) {
-		if (lis[i] > max) {
+	i = 0;
+    while (i++ < list->size_a)
+		if (lis[i] > max)
             max = lis[i];
-        }
-    }
+	unsigned int temp = max;
 	i = 0;
 	while (lis[i] != max)
 		i++;
@@ -120,22 +128,22 @@ int lis(t_vars *list) {
 		while (lis[i] != max && max > 0)
 			i--;
 	}
-	return (0);
+	free(lis);
+	return (temp);
 }
 
 int	main(int argc, char **argv)
 {
-	t_vars	vars;
-	int		i = 0;
+	t_vars			vars;
+	int				i;
+	unsigned int 	size;
 
+	i = 0;
 	(void) argc;
 	vars.stack_b = NULL;
 	vars.size_a = 0;
 	vars.pars = parse_args(++argv);
 	vars.numbers = ft_split(&vars);
-	// if (vars.numbers)
-	// 	vars.numbers++;
-	// printf("%d\n", vars.size_a);
 	if (!check_valid(vars.numbers))
 		return (ft_putstr_fd("\033[31mError\n", 2), 1);
 	while (*vars.numbers)
@@ -144,56 +152,19 @@ int	main(int argc, char **argv)
 		vars.numbers++;
 		i++;
 	}
-	// print_list(vars.stack_a);
-	// ft_printf("\033[92mnumber of elements in the stack : [%d]\n\033[0m", (vars.size_a - 1));
-	// ft_printf("\033[36mprinting the stack_a before instractions... : \n\033[0m");
-	// print_list(vars.stack_a);
-	// ft_printf("\033[36mprinting the stack_b before instractions... : \n\033[0m");
-	// sa(&vars, 1);
-	// // rra(&stack_a, &vars, 1);
-	// // ft_lstadd_back(&stack_b, ft_lstnew(1004));
-	// // pa(&stack_a, &stack_a, &vars);
-	// pb(&vars, 1);
-	// // ft_printf("\033[92mnumber of elements in the stack : [%d]\n\033[0m", (vars.size_a - 1));
-	// pb(&vars, 1);
-	// pb(&vars, 1);
-	// // ft_printf(" ===============\n");
-	// // print_list(vars.stack_a);
-	// // ft_printf(" ===============\n");
-	// // print_list(vars.stack_b);
-	// rr(&vars);
-	// // ra(&vars, 1);
-	// // rra(&vars, 1);
-	// // rrb(&vars, 1);
-	// rrr(&vars);
-	// ft_printf(" ===============\n");
-	// print_list(vars.stack_a);
-	// ft_printf(" ===============\n");
-	// print_list(vars.stack_b);
-	// // rrr(&vars);
-	// // ft_printf("====== [%d] ===", ft_lstsize(stack_b));
-	// // rb(&stack_b, vars, 1);
-	// // pb(&stack_a, &stack_b, &vars);
-	// sa(&vars, 1);
-	// pa(&vars, 1);
-	// pa(&vars, 1);
-	// pa(&vars, 1);
-	ft_printf("======== size_a size_b : [%d] [%d]=========\n", vars.size_a, vars.size_b);
-	ft_printf("======== Lis is : [%d] =========\n", lis(&vars));
+	i = 0;
+	size = lis(&vars);
 	print_list(vars.stack_a);
-	print_list(vars.stack_b);
-	ft_printf("================\n");
+	// while (vars.size_a != size)
+	// {
+	// 	if (!vars.stack_a->in_lis)
+	// 		pb(&vars, 1);
+	// 	ra(&vars, 1);
+	// 	i++;
+	// }
+	// while (i--)
+	// 	rra(&vars, 1);
 	// print_list(vars.stack_a);
-	// ft_printf("\033[36mprinting the stack after SA ... : \n\033[0m");
-	// ss(&stack_a, &stack_b, vars);
-	// print_list(stack_a);
-	// printf("salam\n");
-	// ft_printf("stack_b ===============\n");
-	// print_list(stack_a);
-	// ft_printf("stack_b ===============\n");
-	// print_list(stack_a);
-	// free(vars.pars);
-	// system("leaks push_swap");
-	// while (1)
-	// ;
+	// print_list(vars.stack_a);
+	// system("leaks push_swap | grep total");
 }
