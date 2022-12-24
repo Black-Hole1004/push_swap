@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/22 20:14:17 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:26:51 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct s_variable
 	char			*pars;
 	unsigned int	size_a;
 	unsigned int	size_b;
+	int				min;
+	unsigned int	min_index;
+	int				max;
 }					t_vars;
 
 void	sa(t_vars *vars, bool print);
