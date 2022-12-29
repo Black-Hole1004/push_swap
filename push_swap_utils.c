@@ -15,11 +15,11 @@
 void	ra(t_vars *vars, bool print)
 {
 	t_list	*temp;
-	t_list	*last;
+	// t_list	*last;
 
 	if (vars->size_a < 2)
 		return ;
-	last = ft_lstlast(vars->stack_a);
+	// last = ft_lstlast(vars->stack_a);
 	ft_lstadd_back(&vars->stack_a, ft_lstnew((vars->stack_a)->content, 1,vars->stack_a->in_lis));
 	temp = vars->stack_a;
 	vars->stack_a = (vars->stack_a)->next;
@@ -31,11 +31,11 @@ void	ra(t_vars *vars, bool print)
 void	rb(t_vars *vars, bool print)
 {
 	t_list	*temp;
-	t_list	*last;
+	// t_list	*last;
 
 	if (vars->size_b < 2)
 		return ;
-	last = ft_lstlast(vars->stack_b);
+	// last = ft_lstlast(vars->stack_b);
 	ft_lstadd_back(&vars->stack_b, ft_lstnew((vars->stack_b)->content, 1, vars->stack_b->in_lis));
 	temp = vars->stack_b;
 	vars->stack_b = vars->stack_b->next;

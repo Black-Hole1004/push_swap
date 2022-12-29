@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/23 20:11:30 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:45:55 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,25 @@ void	rrr(t_vars *vars)
 	ft_printf("rrr\n");
 }
 
-void	print_list(t_list *list)
+void	print_list(t_vars vars)
 {
-	int	i;
-
-	i = 0;
-	while (list)
+	t_list *list = vars.stack_a;
+	t_list *list2 = vars.stack_b;
+	while (list || list2)
 	{
 		// if (list->in_lis)
-			ft_printf("%d\n", list->content);
-		list = list->next;
-		i++;
+			if (list)
+				ft_printf("%d\t", list->content);
+			else
+				ft_printf(" \t");
+			if (list2)
+				ft_printf("%d\n", list2->content);
+			else
+				ft_printf(" \n");
+		if (list)
+			list = list->next;
+		if (list2)
+			list2 = list2->next;
 	}
+	ft_printf("==\t==\n[a]\t[b]\n");
 }

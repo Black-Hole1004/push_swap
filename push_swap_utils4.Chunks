@@ -1,0 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils4.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmaymou <ahmaymou@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
+/*   Updated: 2022/12/27 15:14:57 by ahmaymou        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "push_swap.h"
+
+void    scan_a(t_vars *vars)
+{
+    t_list  *temp;
+    int     i;
+    int     j;
+    bool    first;
+    bool    in_chunk;
+
+    i = 0;
+    j = i + 20;
+    vars->hold_second_index = UINT_MAX;
+    in_chunk = false;
+    first = true;
+    while (j < 100)
+    {
+        temp = vars->stack_a;
+        i += 20;
+        j += i;
+        set_holds(vars, temp, i, j, first, in_chunk);
+    }
+}
+
+void    set_holds(t_vars *vars, t_list *temp, int i, int j, bool first , bool in_chunk)
+{
+    while (1)
+    {
+        temp = vars->stack_a;
+        in_chunk = false;
+        while (temp)
+        {
+            if (temp->content < j && temp->content >= i)
+            {
+                if (first)
+                {
+                    vars->hold_first_index = temp->index;
+                    first = false;
+                    in_chunk = true;
+                }
+                if (vars->hold_second_index != temp->index && !first)
+                {
+                    vars->hold_second_index = temp->index;
+                    in_chunk = true;
+                }
+            }
+            temp = temp->next;
+        }
+        if (in_chunk)
+            best_to_top_pb(vars);
+        else
+            break ;
+    }
+}
+
+void    best_to_top_pb(t_vars *vars)
+{
+    if (vars->hold_first_index < vars->size_a / 2)
+        vars->best_elem_index = vars->hold_first_index;
+    else
+        vars->best_elem_index = vars->hold_second_index;
+    if (vars->best_elem_index == 2)
+			sb(vars, 1);
+		if (vars->best_elem_index < vars->size_a / 2)
+			while (vars->best_elem_index--)
+				ra(vars, 1);
+	else
+		while (vars->best_elem_index < vars->size_a)
+            {
+			    rra(vars, 1);
+                vars->best_elem_index++;
+            }
+    pb(vars, 1);
+}

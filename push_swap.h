@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/24 11:26:51 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/28 19:03:21 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,16 @@ typedef struct s_variable
 	char			*pars;
 	unsigned int	size_a;
 	unsigned int	size_b;
-	int				min;
-	unsigned int	min_index;
-	int				max;
+	unsigned int	best_elem_index;
+	unsigned int	hold_first_index;
+	unsigned int	hold_second_index;
+	unsigned int	chunks;
+	int				min_a;
+	int				max_a;
+	int				min_b;
+	int				max_b;
+	unsigned int	min_a_index;
+	unsigned int	min_b_index;
 }					t_vars;
 
 void	sa(t_vars *vars, bool print);
@@ -44,11 +51,23 @@ void	rr(t_vars *vars);
 void	rra(t_vars *vars, bool print);
 void	rrb(t_vars *vars, bool print);
 void	rrr(t_vars *vars);
-void	print_list(t_list *list);
+void	print_list(t_vars vars);
 bool	check_valid(char	**num);
 bool	check_dup(char *str, char **num, int index);
 char	*parse_args(char **args);
 bool	check_blank(char *str);
+void	index_stacks(t_vars *vars);
+void	min_max_index_a(t_vars *vars);
+void	min_max_index_b(t_vars *vars);
+void	min_to_top(t_vars *vars);
+void	do_pb(t_vars *vars);
+void	set_struct(t_vars *vars);
+void	sort(t_vars *vars);
+void	do_pa(t_vars *vars);
+int		get_index_pos(t_vars *vars);
+void    scan_a(t_vars *vars);
+void    set_holds(t_vars *vars, t_list *temp, int i, int j, bool first , bool in_chunk);
+void    best_to_top_pb(t_vars *vars);
 char	**ft_split(t_vars *vars);
 
 #endif

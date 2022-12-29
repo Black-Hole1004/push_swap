@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/24 12:52:29 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:30:31 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,8 +206,6 @@ int	main(int argc, char **argv)
 	i = 0;
 	int toto;
 	(void) argc;
-	vars.min = INT_MAX;
-	vars.max = INT_MIN;
  	vars.stack_b = NULL;
 	vars.stack_a = NULL;
 	vars.size_a = 0;
@@ -219,46 +217,22 @@ int	main(int argc, char **argv)
 	{
 		toto = ft_atoi(*vars.numbers);
 		ft_lstadd_back(&vars.stack_a, ft_lstnew(toto, i, 0));
-		if(toto < vars.min)
-		{
-			vars.min = toto;
-			vars.min_index = i;
-		}
-		if(toto > vars.max)
-			vars.max = toto;
 		vars.numbers++;
 		i++;
 	}
 	i = 0;
-	// if (vars.min_index < vars.size_a / 2)
-	// {
-	// 	while (vars.stack_a->content != vars.min)
-	// 		ra(&vars, 1);
-	// }
-	// else
-	// 	while (vars.stack_a->content != vars.min)
-	// 		rra(&vars, 1);
-	// t_list *tmp = vars.stack_a;
-	// while (tmp)
-	// {
-	// 	tmp->index = i;
-	// 	i++;
-	// 	tmp = tmp->next;
-	// }
-	// print_list(vars.stack_a);
 	size = lis(&vars);
-	// print_list(vars.stack_a);
-	// ft_printf("====== size_a [%d]\n", vars.stack_a->content);
 	while (vars.size_a != size)
 	{
 		if (!vars.stack_a->in_lis)
 			pb(&vars, 1);
 		rra(&vars, 1);
 	}
-	ra(&vars, 1);
-	// ft_printf("====== size_a [%d]\n", vars.size_a);
-	print_list(vars.stack_a);
-	ft_printf("======\n");
-	print_list(vars.stack_b);
+	// scan_a(&vars);
+	sort(&vars);
+	// ra(&vars, 1);
+	print_list(vars);
+	// ft_printf("<==========>\n");
+	// print_list(vars.stack_b);
 	// system("leaks push_swap | grep total");
 }
