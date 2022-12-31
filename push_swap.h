@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/28 19:03:21 by blackhole        ###   ########.fr       */
+/*   Updated: 2022/12/31 18:38:44 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ typedef struct s_variable
 	unsigned int	size_a;
 	unsigned int	size_b;
 	unsigned int	best_elem_index;
-	unsigned int	hold_first_index;
-	unsigned int	hold_second_index;
-	unsigned int	chunks;
 	int				min_a;
 	int				max_a;
 	int				min_b;
 	int				max_b;
 	unsigned int	min_a_index;
 	unsigned int	min_b_index;
+	unsigned int	max_a_index;
 }					t_vars;
 
 void	sa(t_vars *vars, bool print);
@@ -64,10 +62,7 @@ void	do_pb(t_vars *vars);
 void	set_struct(t_vars *vars);
 void	sort(t_vars *vars);
 void	do_pa(t_vars *vars);
-int		get_index_pos(t_vars *vars);
-void    scan_a(t_vars *vars);
-void    set_holds(t_vars *vars, t_list *temp, int i, int j, bool first , bool in_chunk);
-void    best_to_top_pb(t_vars *vars);
+int		get_index_pos(t_vars *vars, t_list *temp);
 char	**ft_split(t_vars *vars);
 
 #endif

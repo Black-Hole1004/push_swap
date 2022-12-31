@@ -41,90 +41,98 @@ unsigned int	abs_val(int val)
 	return (val);
 }
 
-int	which_move(t_vars *vars)
+unsigned int	calcul_moves(t_vars *vars, int *pos)
 {
-	/*rra rrb rrr negatives ; ra rb rr positives*/
-	int				tab;
-	unsigned int	pos;
+	unsigned int	*to_return;
+	unsigned int	sum;
 
-	tab = 0;
-	pos = get_index_pos(vars);
-	if (pos < vars->size_a / 2 && vars->min_b_index < vars->size_b / 2)
-		if (pos < vars->min_b_index)
-			tab = pos;
-		else
-		tab = vars->min_b_index;
-	else if (pos >= vars->size_a / 2 && vars->min_b_index >= vars->size_b / 2)
+	to_return = calloc (4, sizeof (int));
+	if (pos[0] < 0)
+		to_return[3] = vars->size_b - abs_val(pos[0]) + 1;
+	else
+		to_return[1] = pos[0];
+	if (pos[1] < 0)
 	{
-		if (pos >= vars->min_b_index)
-			tab = -pos;
-		else
-			tab = -(vars->min_b_index);
+		if (abs_val(pos[1]) < (vars->size_a))
+			to_return[2] = vars->size_a - abs_val(pos[1]);
 	}
-	return (tab);
+	else
+		to_return[0] = pos[1];
+	sum = to_return[0] + to_return[1] + to_return[2] + to_return[3];
+	return (sum);
 }
 
-void	normal_rot(t_vars *vars)
+void	set_best_elem_index(t_vars *vars)
 {
-	// 	unsigned int	index;
+	t_list			*temp;
+	int				*pos;
+	unsigned int	sum;
 
-	// index = get_index_pos(vars);
-	// // if (index == 0)
-	// // {
-	// // 	pa(vars, 1);
-	// // 	// sa(vars, 1);
-	// // }
-	// if (index < vars->size_a / 2)
-	// {
-	// 	// temp = index + 1;
-	// 	while (index--)
-	// 		ra(vars, 1);
-	// 	// pa(vars, 1);
-	// 	// while (temp--)
-	// 	// 	rra(vars, 1);
-	// }
-	// else
-	// {
-	// 	index = vars->size_a - index;
-	// 	// temp = index + 1;
-	// 	while (index--)
-	// 		rra(vars, 1);
-	// 	// pa(vars, 1);
-	// 	// while (temp--)
-	// 	// 	ra(vars, 1);
-	// }
-	if (vars->min_a_index < vars->size_a / 2)
-		while (vars->stack_a->content != vars->min_a)
-			ra(vars, 1);
+	index_stacks(vars);
+	temp = vars->stack_b;
+	vars->best_elem_index = 0;
+	pos = calloc(2 , sizeof (int));
+	sum = UINT_MAX;
+	while (temp)
+	{
+		pos[0] = temp->index;
+		pos[1] = get_index_pos(vars, temp);
+		if (calcul_moves(vars, pos) < sum)
+		{
+			sum = calcul_moves(vars, pos);
+			vars->best_elem_index = temp->index;
+			if (vars->best_elem_index > vars->size_b / 2)
+				vars->best_elem_index *= (-1);
+		}
+		temp = temp->next;
+	}
+	free (pos);
+}
+
+t_list	*find_elem(t_vars *vars, int index, char c)
+{
+	unsigned int	i;
+	t_list			*temp;
+
+	i = abs_val(index);
+	if (c == 'b')
+		temp = vars->stack_b;
 	else
-		while (vars->stack_a->content != vars->min_a)
-			rra(vars, 1);
-	if (vars->min_b_index < vars->size_b / 2)
-		while (vars->stack_b->content != vars->min_b)
-			rb(vars, 1);
-	else
-		while (vars->stack_b->content != vars->min_b)
-			rrb(vars, 1);
+		temp = vars->stack_a;
+	while (temp->index != i)
+	{
+		temp = temp->next;
+		if (!temp)
+			break ;
+	}
+	return (temp);
+}
+
+unsigned int	minimum(unsigned int a, unsigned int b)
+{
+	return (a < b ? a : b);
+}
+
+unsigned int	maximum(unsigned int a, unsigned int b)
+{
+	return (a > b ? a : b);
 }
 
 void	min_to_top(t_vars *vars)
 {
-	int	tab;
+	int				moves;
 
-	tab = which_move(vars);
-	if (tab < 0)
+	if (vars->min_a_index <= vars->size_a / 2)
 	{
-		tab = abs_val(tab);
-		// printf("suuiii");
-		while (tab--)
-			rrr(vars);
-		normal_rot(vars);
+		moves = vars->min_a_index;
+		while (moves--)
+			ra(vars, 1);
 	}
 	else
 	{
-		while (tab--)
-			rr(vars);
-		normal_rot(vars);
+		moves = vars->size_a - vars->min_a_index;
+		while (moves--)
+			rra(vars, 1);
 	}
 }
 
@@ -145,42 +153,43 @@ void	min_max_index_a(t_vars *vars)
 			vars->min_a_index = i;
 		}
 		if(temp->content > vars->max_a)
-			vars->max_a = temp->content;
-		i++;
-		temp = temp->next;
-	}
-}
-
-void	min_max_index_b(t_vars *vars)
-{
-	int		i;
-	t_list	*temp;
-
-	i = 0;
-	temp = vars->stack_b;
-	vars->min_b = INT_MAX;
-	vars->max_b = INT_MIN;
-	while (temp)
-	{
-		if(temp->content < vars->min_b)
 		{
-			vars->min_b = temp->content;
-			vars->min_b_index = i;
+			vars->max_a = temp->content;
+			vars->max_a_index = i;
 		}
-		if(temp->content > vars->max_b)
-			vars->max_b = temp->content;
 		i++;
 		temp = temp->next;
 	}
 }
+
+// void	min_max_index_b(t_vars *vars)
+// {
+// 	int		i;
+// 	t_list	*temp;
+
+// 	i = 0;
+// 	temp = vars->stack_b;
+// 	vars->min_b = INT_MAX;
+// 	vars->max_b = INT_MIN;
+// 	while (temp)
+// 	{
+// 		if(temp->content < vars->min_b)
+// 		{
+// 			vars->min_b = temp->content;
+// 			vars->min_b_index = i;
+// 		}
+// 		if(temp->content > vars->max_b)
+// 			vars->max_b = temp->content;
+// 		i++;
+// 		temp = temp->next;
+// 	}
+// }
 
 void	set_struct(t_vars *vars)
 {
 	index_stacks(vars);
 	min_max_index_a(vars);
-	min_max_index_b(vars);
-	min_to_top(vars);
-	// do_pa(vars);
+	// min_max_index_b(vars);
 }
 
 void	sort(t_vars *vars)
@@ -192,58 +201,107 @@ void	sort(t_vars *vars)
 	{
 		set_struct(vars);
 		do_pa(vars);
-	// printf("suuuiii\n");
 	}
-	ra(vars, 1);
-	// normal_rot(vars);
-	// min_to_top(vars);
+	min_max_index_a(vars);
+	min_to_top(vars);
 }
 
-int	get_index_pos(t_vars *vars)
+int	check_sign(t_vars *vars, unsigned int i)
 {
-	t_list	*temp;
-	int		i;
+	if (i <= vars->size_a / 2)
+		return (1);
+	else
+		return (-1);
+}
 
-	temp = vars->stack_a;
-	i = 0;
-	while (temp->content < vars->stack_b->content)
+int	get_index_pos(t_vars *vars, t_list *temp)
+{
+	t_list				*tmp_stack;
+	t_list				*head;
+	unsigned int		i;
+
+	tmp_stack = vars->stack_a;
+	head = vars->stack_a;
+	while (tmp_stack->next)
 	{
-		i++;
-		temp = temp->next;
-		if (!temp)	
-			break ;
+		if ((temp->content > tmp_stack->content)
+			&& (temp->content < tmp_stack->next->content))
+		{
+			i = tmp_stack->next->index;
+			return (i * check_sign(vars, i));
+		}
+		tmp_stack = tmp_stack->next;
 	}
-	return (i);
+	if (temp->content < head->content && temp->content > tmp_stack->content)
+		i = head->index;
+	else
+	{
+		tmp_stack = find_elem(vars, vars->min_a_index, 'a');
+		i = tmp_stack->index;
+	}
+	return (i * check_sign(vars, i));
 }
 
 void	do_pa(t_vars *vars)
 {
-	unsigned int	index;
-	// int				temp;
-
-	index = get_index_pos(vars);
-	if (index == 0)
+	int				index;
+	t_list			*temp1;
+	int				index2;
+	unsigned int	max_i;
+	int				moves[6];
+	/* [0] = ra , [1] = rb, [2] = rra, [3] = rrb, [4] = rr, [5] = rrr*/
+	set_best_elem_index(vars);
+	temp1 = find_elem(vars, vars->best_elem_index, 'b');
+	index = get_index_pos(vars, temp1);
+	index2 = vars->best_elem_index;
+	max_i = vars->size_a - 1;
+	if (index2 >= 0)
 	{
-		pa(vars, 1);
-		// sa(vars, 1);
-	}
-	else if (index < vars->size_a / 2)
-	{
-		// temp = index + 1;
-		while (index--)
-			ra(vars, 1);
-		pa(vars, 1);
-		// while (temp--)
-		// 	rra(vars, 1);
+		moves[1] = index2;
+		moves[3] = 0;
 	}
 	else
 	{
-		index = vars->size_a - index;
-		// temp = index + 1;
-		while (index--)
-			rra(vars, 1);
-		pa(vars, 1);
-		// while (temp--)
-		// 	ra(vars, 1);
+		index2 = abs_val(index2);
+		if ((int)vars->size_b > index2 + 1)
+			index2 = vars->size_b - index2;
+		else
+			index2 = 1;
+		moves[3] = index2;
+		moves[1] = 0;
 	}
+	if (index < 0)
+	{
+		index = abs_val(index);
+		moves[2] = max_i - index + 1;
+		moves[0] = 0;
+	}
+	else
+	{
+		moves[0] = index;
+		moves[2] = 0;
+	}
+	moves[4] = minimum(moves[0], moves[1]);
+	while (moves[4]--)
+	{
+		rr(vars);
+		moves[0]--;
+		moves[1]--;
+	}
+	while (moves[0]--)
+		ra(vars, 1);
+	while (moves[1]--)
+		rb(vars, 1);
+	moves[5] = minimum(moves[2], moves[3]);
+	while (moves[5]--)
+	{
+		rrr(vars);
+		moves[2]--;
+		moves[3]--;
+	}
+	while (moves[2]--)
+		rra(vars, 1);
+	while (moves[3]--)
+		rrb(vars, 1);
+	pa(vars, 1);
 }

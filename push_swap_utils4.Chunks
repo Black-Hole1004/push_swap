@@ -84,3 +84,59 @@ void    best_to_top_pb(t_vars *vars)
             }
     pb(vars, 1);
 }
+
+void	do_pa(t_vars *vars)
+{
+	int				index;
+	t_list			*temp1;
+	int				temp;
+	int				index2;
+	unsigned int	max_i;
+
+	set_best_elem_index(vars);
+	temp1 = find_elem(vars, vars->best_elem_index, 'b');
+	index = get_index_pos(vars, temp1);
+	index2 = vars->best_elem_index;
+	max_i = vars->size_a - 1;
+	temp = 0;
+	if (index2 >= 0)
+	{
+		while (index2--)
+			rb(vars, 1);
+	}
+	else
+	{
+		index2 = abs_val(index2);
+		if ((int)vars->size_b > index2 + 1)
+			index2 = vars->size_b - index2;
+		else
+			index2 = 1;
+		while (index2--)
+			rrb(vars, 1);
+	}
+	if (index < 0)
+	{
+		index = abs_val(index);
+		while (index <= (int)max_i)
+		{
+			rra(vars, 1);
+			max_i--;
+			temp++;
+		}
+		temp++;
+		pa(vars, 1);
+		// while (temp--)
+		// 	ra(vars, 1);
+	}
+	else
+	{
+		temp = index;
+		while (index--)
+			ra(vars, 1);
+		pa(vars, 1);
+		// while (temp--)
+		// 	rra(vars, 1);
+	}
+	// printf("[%d]\n", vars->max_a_index);
+	// pa(vars, 1);
+}

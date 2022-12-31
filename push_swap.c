@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/29 13:30:31 by blackhole        ###   ########.fr       */
+/*   Updated: 2022/12/31 18:34:36 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,13 +226,10 @@ int	main(int argc, char **argv)
 	{
 		if (!vars.stack_a->in_lis)
 			pb(&vars, 1);
-		rra(&vars, 1);
+		else
+			ra(&vars, 1);
 	}
-	// scan_a(&vars);
 	sort(&vars);
-	// ra(&vars, 1);
 	print_list(vars);
-	// ft_printf("<==========>\n");
-	// print_list(vars.stack_b);
 	// system("leaks push_swap | grep total");
 }
