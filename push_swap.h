@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/02 15:44:54 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/02 18:20:06 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ typedef struct s_variable
 	unsigned int	size_b;
 	t_list			*best_elem;
 	int				min_a;
-	int				max_a;
-	int				min_b;
-	int				max_b;
 	unsigned int	min_a_index;
-	unsigned int	min_b_index;
-	unsigned int	max_a_index;
 }					t_vars;
 
 void			sa(t_vars *vars, bool print);

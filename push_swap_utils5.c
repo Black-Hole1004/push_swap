@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/02 18:13:23 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/02 18:19:13 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	min_max_index_a(t_vars *vars)
 	i = 0;
 	temp = vars->stack_a;
 	vars->min_a = INT_MAX;
-	vars->max_a = INT_MIN;
+	// vars->max_a = INT_MIN;
 	while (temp)
 	{
 		if(temp->content < vars->min_a)
@@ -46,11 +46,11 @@ void	min_max_index_a(t_vars *vars)
 			vars->min_a = temp->content;
 			vars->min_a_index = i;
 		}
-		if(temp->content > vars->max_a)
-		{
-			vars->max_a = temp->content;
-			vars->max_a_index = i;
-		}
+		// if(temp->content > vars->max_a)
+		// {
+		// 	vars->max_a = temp->content;
+		// 	vars->max_a_index = i;
+		// }
 		i++;
 		temp = temp->next;
 	}
