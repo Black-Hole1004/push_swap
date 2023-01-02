@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/31 18:34:36 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/02 17:56:50 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,35 +201,23 @@ int	main(int argc, char **argv)
 {
 	t_vars			vars;
 	int				i;
-	unsigned int 	size;
+	int 			content;
 
 	i = 0;
-	int toto;
 	(void) argc;
- 	vars.stack_b = NULL;
-	vars.stack_a = NULL;
-	vars.size_a = 0;
-	vars.pars = parse_args(++argv);
-	vars.numbers = ft_split(&vars);
+    vars.pars = parse_args(++argv);
+	stacks_init(&vars);
 	if (!check_valid(vars.numbers))
 		return (ft_putstr_fd("\033[31mError\n", 2), 1);
 	while (*vars.numbers)
 	{
-		toto = ft_atoi(*vars.numbers);
-		ft_lstadd_back(&vars.stack_a, ft_lstnew(toto, i, 0));
+		content = ft_atoi(*vars.numbers);
+		ft_lstadd_back(&vars.stack_a, ft_lstnew(content, i, 0));
 		vars.numbers++;
 		i++;
 	}
-	i = 0;
-	size = lis(&vars);
-	while (vars.size_a != size)
-	{
-		if (!vars.stack_a->in_lis)
-			pb(&vars, 1);
-		else
-			ra(&vars, 1);
-	}
+	do_pb(&vars);
 	sort(&vars);
-	print_list(vars);
+	// print_list(vars);
 	// system("leaks push_swap | grep total");
 }

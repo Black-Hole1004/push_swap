@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/28 15:45:55 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/01 15:05:54 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	print_list(t_vars vars)
 	{
 		// if (list->in_lis)
 			if (list)
-				ft_printf("%d\t", list->content);
+				ft_printf("%d\t\t", list->content);
 			else
-				ft_printf(" \t");
+				ft_printf(" \t\t");
 			if (list2)
 				ft_printf("%d\n", list2->content);
 			else
@@ -81,5 +81,5 @@ void	print_list(t_vars vars)
 		if (list2)
 			list2 = list2->next;
 	}
-	ft_printf("==\t==\n[a]\t[b]\n");
+	ft_printf("==\t==\n[a]\t\t[b]\n");
 }
