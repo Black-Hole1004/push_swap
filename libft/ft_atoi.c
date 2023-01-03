@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 14:32:05 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/21 17:20:15 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:08:53 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ long	ft_atoi(const char *str)
 	{
 		result *= 10;
 		result += *str - '0';
-		if (result > INT_MAX || !ft_isdigit(*str))
+		if ((result  > 2147483647 && sign == 1 ) || result * (-1) < INT_MIN || !ft_isdigit(*str))
 			return (UINT_MAX);
 		str++;
 	}
