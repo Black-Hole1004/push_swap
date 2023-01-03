@@ -44,6 +44,7 @@ void	pb_5(t_vars *vars)
 {
 	int moves;
 
+	min_index_a(vars);
 	if (vars->min_a_index <= vars->size_a / 2)
 	while (vars->min_a_index)
 	{
@@ -61,7 +62,6 @@ void	pb_5(t_vars *vars)
 
 void	sort5(t_vars *vars)
 {
-	min_index_a(vars);
 	while (vars->size_a >= 4)
 		pb_5(vars);
 	sort3(vars);
