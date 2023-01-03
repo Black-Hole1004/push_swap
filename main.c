@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:48 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/03 13:11:03 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/03 20:45:34 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,15 @@ int	main(int argc, char **argv)
 		vars.numbers++;
 		i++;
 	}
-	// i = 0;
-
-	// if (argc == 3)
-	// 	sort3(&vars);
-	// else if (argc == 5)
-	// 	sort5(&vars);
-	// else
-	// {
+	if (argc <= 5)
+		sort3(&vars);
+	else if (argc == 6)
+		sort5(&vars);
+	else
+	{
 		do_pb(&vars);
 		sort(&vars);
-	// }
+	}
 	// print_list(vars);
 	// system("leaks push_swap | grep total");
 }

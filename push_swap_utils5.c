@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/02 18:19:13 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/03 15:37:21 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	min_to_top(t_vars *vars)
 	}
 }
 
-void	min_max_index_a(t_vars *vars)
+void	min_index_a(t_vars *vars)
 {
 	int		i;
 	t_list	*temp;
@@ -46,11 +46,6 @@ void	min_max_index_a(t_vars *vars)
 			vars->min_a = temp->content;
 			vars->min_a_index = i;
 		}
-		// if(temp->content > vars->max_a)
-		// {
-		// 	vars->max_a = temp->content;
-		// 	vars->max_a_index = i;
-		// }
 		i++;
 		temp = temp->next;
 	}
@@ -59,7 +54,7 @@ void	min_max_index_a(t_vars *vars)
 void	set_struct(t_vars *vars)
 {
 	index_stacks(vars);
-	min_max_index_a(vars);
+	min_index_a(vars);
 	iterate_assign(vars);
 }
 
@@ -75,7 +70,7 @@ void	sort(t_vars *vars)
 		vars->best_elem->where_to_push = abs_val(where_to_push(vars, vars->best_elem));
 		apply_moves(vars);
 	}
-	min_max_index_a(vars);
+	min_index_a(vars);
 	min_to_top(vars);
 }
 

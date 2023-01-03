@@ -6,7 +6,7 @@
 #    By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#              #
-#    Updated: 2023/01/03 13:14:04 by blackhole        ###   ########.fr        #
+#    Updated: 2023/01/03 20:44:55 by blackhole        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CC = cc
 LIBS = libft.a libftprintf.a
 
 EXEC = push_swap
+EXEC_B = checker
 
 OBJ = $(SRCS_OBJ:.c=.o)
 
@@ -44,14 +45,13 @@ prog :  $(OBJ) push_swap.h
 bonus : $(NAME) checker_prog
 
 checker_prog : push_swap.h
-	$(CC) $(FLAGS) $(SRC_B) $(OBJ) $(LIBS) -o checker
-	@rm -rf $(OBJ)
+	$(CC) $(FLAGS) $(SRC_B) $(OBJ) $(LIBS) -o $(EXEC_B)
 	@rm -rf $(LIBS)
 
 clean :
-	rm -rf $(EXEC) libft/*.o printf/*.o $(OBJ)
+	rm -rf  libft/*.o printf/*.o $(OBJ)
 fclean : clean
-	@rm -rf $(LIBS)
+	@rm -rf $(LIBS) $(EXEC) $(EXEC_B)
 
 re : fclean all
 re_bonus: fclean bonus
