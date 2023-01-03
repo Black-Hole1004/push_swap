@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/03 10:32:14 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/03 12:46:46 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include "libft/libft.h"
 # include "printf/ft_printf.h"
+# include "get_next_line.h"
 
 typedef struct s_variable
 {
@@ -76,5 +77,6 @@ void			common_rrr(t_vars *vars, int b_content, int a_content);
 unsigned int	maximum(unsigned int a, unsigned int b);
 unsigned int	minimum(unsigned int a, unsigned int b);
 char			**ft_split(t_vars *vars);
+char			*get_next_line(int fd);
 
 #endif
