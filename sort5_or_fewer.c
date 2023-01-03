@@ -40,34 +40,39 @@ void	sort3(t_vars *vars)
 	}
 }
 
-void	sort5(t_vars *vars)
+void	pb_5(t_vars *vars)
 {
-	min_index_a(vars);
+	int moves;
+
 	if (vars->min_a_index <= vars->size_a / 2)
-		while (vars->min_a_index)
-		{
-			ra(vars, 1);
-			vars->min_a_index--;
-		}
+	while (vars->min_a_index)
+	{
+		ra(vars, 1);
+		vars->min_a_index--;
+	}
 	else
 	{
-		int moves = vars->size_a - vars->min_a_index;
+		moves = vars->size_a - vars->min_a_index;
 		while (moves--)
 			rra(vars, 1);
 	}
 	pb(vars, 1);
-	if (vars->size_a == 4)
-		sort5(vars);
+}
+
+void	sort5(t_vars *vars)
+{
+	min_index_a(vars);
+	while (vars->size_a >= 4)
+		pb_5(vars);
+	sort3(vars);
+	if (!vars->stack_b->next)
+		pa(vars, 1);
+	else if (vars->stack_b->content > vars->stack_b->next->content)
+		pa(vars, 1);
 	else
 	{
-		sort3(vars);
-		if (vars->stack_b->content > vars->stack_b->next->content)
-			pa(vars, 1);
-		else
-		{
-			sb(vars, 1);
-			pa(vars, 1);
-		}
+		sb(vars, 1);
 		pa(vars, 1);
 	}
+	pa(vars, 1);
 }
