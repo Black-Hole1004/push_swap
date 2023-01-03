@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:53:10 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/23 20:07:09 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/03 10:31:03 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,15 @@ void	rr(t_vars *vars)
 	if (vars->size_a < 2 || vars->size_b < 2)
 		return ;
 	ft_printf("rr\n");
+}
+
+void    stacks_init(t_vars *vars)
+{
+	vars->stack_b = NULL;
+	vars->stack_a = NULL;
+	vars->size_a = 0;
+	vars->size_b = 0;
+	vars->best_elem = NULL;
+	vars->min_a = 0;
+	vars->numbers = ft_split(vars);
 }
