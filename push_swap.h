@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/03 12:46:46 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/03 20:47:23 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ bool    		is_sorted(t_vars vars);
 char			*parse_args(char **args);
 bool			check_blank(char *str);
 void			index_stacks(t_vars *vars);
-void			min_max_index_a(t_vars *vars);
-void			min_max_index_b(t_vars *vars);
+void			min_index_a(t_vars *vars);
 void			min_to_top(t_vars *vars);
 void			do_pb(t_vars *vars);
 void			set_struct(t_vars *vars);
@@ -76,6 +75,9 @@ void			common_moves(t_vars *vars, int b_content, int a_content);
 void			common_rrr(t_vars *vars, int b_content, int a_content);
 unsigned int	maximum(unsigned int a, unsigned int b);
 unsigned int	minimum(unsigned int a, unsigned int b);
+void    		index_1_2(t_vars *vars, t_list *elem, t_list *second);
+void			sort3(t_vars *vars);
+void			sort5(t_vars *vars);
 char			**ft_split(t_vars *vars);
 char			*get_next_line(int fd);
 
