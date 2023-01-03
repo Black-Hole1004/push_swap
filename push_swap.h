@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/02 18:20:06 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/03 10:32:14 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void			rrb(t_vars *vars, bool print);
 void			rrr(t_vars *vars);
 void			print_list(t_vars vars);
 void    		stacks_init(t_vars *vars);
+void			lis_init(int lis[], t_vars *list);
+void			lis_calculate(int lis[], t_vars *list);
+int				lis_find_max(int lis[], t_vars *list);
+int				lis(t_vars *list);
 int 			lis(t_vars *list);
 unsigned int	abs_val(int val);
 t_list			*find_elem(t_vars *vars, int index, char c);
