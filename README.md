@@ -18,25 +18,25 @@ which cannot be duplicated.
 ◦ The stack b is empty.
 • The goal is to sort in ascending order numbers into stack a. To do so you have the
 following operations at your disposal:
-1. sa (swap a): Swap the first 2 elements at the top of stack a.
+1. ```sa``` (swap a): Swap the first 2 elements at the top of stack a.
 Do nothing if there is only one or no elements.
-2. sb (swap b): Swap the first 2 elements at the top of stack b.
+2. ```sb``` (swap b): Swap the first 2 elements at the top of stack b.
 Do nothing if there is only one or no elements.
-3. ss : sa and sb at the same time.
-4. pa (push a): Take the first element at the top of b and put it at the top of a.
+3. ```ss``` : sa and sb at the same time.
+4. ```pa``` (push a): Take the first element at the top of b and put it at the top of a.
 Do nothing if b is empty.
-5. pb (push b): Take the first element at the top of a and put it at the top of b.
+5. ```pb``` (push b): Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.
-6. ra (rotate a): Shift up all elements of stack a by 1.
+6. ```ra``` (rotate a): Shift up all elements of stack a by 1.
 The first element becomes the last one.
-6. rb (rotate b): Shift up all elements of stack b by 1.
+6. ```rb``` (rotate b): Shift up all elements of stack b by 1.
 The first element becomes the last one.
-7. rr : ra and rb at the same time.
-8. rra (reverse rotate a): Shift down all elements of stack a by 1.
+7. ```rr``` : ra and rb at the same time.
+8. ```rra``` (reverse rotate a): Shift down all elements of stack a by 1.
 The last element becomes the first one.
-9. rrb (reverse rotate b): Shift down all elements of stack b by 1.
+9. ```rrb``` (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.
-10. rrr : rra and rrb at the same time.
+10. ```rrr``` : rra and rrb at the same time.
 
 # check out my push_swap tester here :
 [push_swap_tester](https://github.com/Black-Hole1004/push_swap_tester)
