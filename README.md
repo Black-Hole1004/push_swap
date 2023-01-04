@@ -39,4 +39,4 @@ The last element becomes the first one.
 10. rrr : rra and rrb at the same time.
 
 # check out my push_swap tester here :
-[(https://github.com/Black-Hole1004/push_swap_tester)]
+[](https://github.com/Black-Hole1004/push_swap_tester)
