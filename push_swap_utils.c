@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:53:10 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/03 16:44:56 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/05 16:10:19 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void	rb(t_vars *vars, bool print)
 		ft_printf("rb\n");
 }
 
-void	rr(t_vars *vars)
+void	rr(t_vars *vars, bool print)
 {
 	ra(vars, 0);
 	rb(vars, 0);
 	if (vars->size_a < 2 || vars->size_b < 2)
 		return ;
-	ft_printf("rr\n");
+	if (print)
+		ft_printf("rr\n");
 }
 
 void    stacks_init(t_vars *vars)

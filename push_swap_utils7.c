@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/02 13:42:01 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/05 16:06:55 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	common_moves(t_vars *vars, int b_content, int a_content)
 	{
 		while (vars->stack_a->content != a_content
 			&& vars->stack_b->content != b_content)
-			rr(vars);
+			rr(vars, 1);
 		while (vars->stack_a->content != a_content)
 			ra(vars, 1);
 		while (vars->stack_b->content != b_content)
@@ -83,7 +83,7 @@ void	common_moves(t_vars *vars, int b_content, int a_content)
 void	common_rrr(t_vars *vars, int b_content, int a_content)
 {
 	while (vars->stack_a->content != a_content && vars->stack_b->content != b_content)
-		rrr(vars);
+		rrr(vars, 1);
 	while (vars->stack_a->content != a_content)
 		rra(vars, 1);
 	while (vars->stack_b->content != b_content)

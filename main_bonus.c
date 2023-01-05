@@ -1,21 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
+/*   Updated: 2023/01/05 16:04:54 by blackhole        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "push_swap.h"
-
-// bool    is_sorted(t_vars vars)
-// {
-// 	t_list  *temp;
-// 	int		prev_content;
-
-// 	temp = vars.stack_a;
-// 	prev_content = temp->content;
-// 	while (temp)
-// 	{
-// 		if (prev_content > temp->content)
-// 			return (false);
-// 		prev_content = temp->content;
-// 		temp = temp->next;
-// 	}
-// 	return (true);
-// }
 
 bool	check_blank(char *str)
 {
@@ -78,34 +73,32 @@ bool	check_valid(char	**num)
 		return (false);
 }
 
-void	user_steps(t_vars *vars, char *ptr)
+void	user_steps(t_vars *vars, char *ptr, bool *is_done)
 {
 	if (!ft_strncmp(ptr, "sa\n", 3))
-		sa(vars, 1);
+		sa(vars, 0);
 	else if (!ft_strncmp(ptr, "sb\n", 3))
-		sb(vars, 1);
+		sb(vars, 0);
 	else if (!ft_strncmp(ptr, "ss\n", 3))
-		ss(vars);
+		ss(vars, 0);
 	else if (!ft_strncmp(ptr, "ra\n", 3))
-		ra(vars, 1);
+		ra(vars, 0);
 	else if (!ft_strncmp(ptr, "rb\n", 3))
-		rb(vars, 1);
+		rb(vars, 0);
 	else if (!ft_strncmp(ptr, "rr\n", 3))
-		rr(vars);
+		rr(vars, 0);
 	else if (!ft_strncmp(ptr, "rra\n", 4))
-		rra(vars, 1);
+		rra(vars, 0);
 	else if (!ft_strncmp(ptr, "rrb\n", 4))
-		rra(vars, 1);
+		rrb(vars, 0);
 	else if (!ft_strncmp(ptr, "rrr\n", 4))
-		rrr(vars);
+		rrr(vars, 0);
 	else if (!ft_strncmp(ptr, "pa\n", 3))
 		pa(vars, 0);
 	else if (!ft_strncmp(ptr, "pb\n", 3))
-		pb(vars, 1);
+		pb(vars, 0);
 	else
-		exit(1);
-	// i++;
-
+		*is_done = false;
 }
 
 int	main(int argc, char **argv)
@@ -114,6 +107,7 @@ int	main(int argc, char **argv)
 	int				i;
 	int 			content;
 	char 			*ptr;
+	bool			is_done;
 
 	i = 0;
 	if (argc == 1)
@@ -131,10 +125,16 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	ptr = get_next_line(0);
+	is_done = true;
 	while (ptr)
 	{
-		// ft_printf("====%s", ptr);
-		user_steps(&vars, ptr);
+		user_steps(&vars, ptr, &is_done);
+		if (!is_done)
+		{
+			ft_printf("you did not provide a valid move !\n");
+			free(ptr);
+			exit(1);
+		}
 		free(ptr);
 		ptr = get_next_line(0);
 	}

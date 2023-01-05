@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:53:07 by ahmaymou          #+#    #+#             */
-/*   Updated: 2022/12/23 20:08:17 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:09:08 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	sb(t_vars *vars, bool print)
 		ft_printf("sb\n");
 }
 
-void	ss(t_vars *vars)
+void	ss(t_vars *vars, bool print)
 {
 	sa(vars, 0);
 	sb(vars, 0);
-	if (vars->size_a > 1 || vars->size_b > 1)
+	if ((vars->size_a > 1 || vars->size_b > 1) && print)
 		ft_printf("ss\n");
 }
 

@@ -6,7 +6,7 @@
 /*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/03 20:47:23 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/05 16:05:22 by blackhole        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ typedef struct s_variable
 
 void			sa(t_vars *vars, bool print);
 void			sb(t_vars *vars, bool print);
-void			ss(t_vars *vars);
+void			ss(t_vars *vars, bool print);
 void			pa(t_vars *vars, bool print);
 void			pb(t_vars *vars, bool print);
 void			ra(t_vars *vars, bool print);
 void			rb(t_vars *vars, bool print);
-void			rr(t_vars *vars);
+void			rr(t_vars *vars, bool print);
 void			rra(t_vars *vars, bool print);
 void			rrb(t_vars *vars, bool print);
-void			rrr(t_vars *vars);
+void			rrr(t_vars *vars, bool print);
 void			print_list(t_vars vars);
 void    		stacks_init(t_vars *vars);
 void			lis_init(int lis[], t_vars *list);
