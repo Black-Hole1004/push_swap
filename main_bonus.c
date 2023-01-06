@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 17:51:16 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:06:21 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	get_instructions(t_vars *vars, bool is_done)
 	ptr = get_next_line(0);
 	while (ptr)
 	{
-		user_steps(&vars, ptr, &is_done);
+		user_steps(vars, ptr, &is_done);
 		if (!is_done)
 		{
-			ft_printf("you did not provide a valid move !\n");
+			ft_printf("Error\n");
 			free(ptr);
 			exit(1);
 		}
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 {
 	t_vars			vars;
 	int				i;
-	int				content;
 	bool			is_done;
 
 	i = 0;
@@ -45,17 +44,11 @@ int	main(int argc, char **argv)
 	vars.pars = parse_args(++argv);
 	stacks_init(&vars);
 	if (!check_valid(vars.numbers))
-		return (ft_putstr_fd("\033[31mError\n", 2), 1);
-	while (*vars.numbers)
-	{
-		content = ft_atoi(*vars.numbers);
-		ft_lstadd_back(&vars.stack_a, ft_lstnew(content, i, 0));
-		vars.numbers++;
-		i++;
-	}
+		return (ft_putstr_fd("Error\n", 2), 1);
+	fill_stack(&vars);
 	is_done = true;
 	get_instructions(&vars, is_done);
-	if (is_sorted(vars))
+	if (is_sorted(vars) && !vars.size_b)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

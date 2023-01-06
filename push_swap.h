@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 17:48:37 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:05:55 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ void			sort3(t_vars *vars);
 void			sort5(t_vars *vars);
 char			**ft_split(t_vars *vars);
 char			*get_next_line(int fd);
+void			fill_stack(t_vars *vars);
+void			user_steps(t_vars *vars, char *ptr, bool *is_done);
 
 #endif

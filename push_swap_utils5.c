@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 16:45:15 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:11:50 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ bool	is_sorted(t_vars vars)
 	t_list	*temp;
 	int		prev_content;
 
+	if (!vars.size_a)
+		return (false);
 	temp = vars.stack_a;
 	prev_content = temp->content;
 	while (temp)

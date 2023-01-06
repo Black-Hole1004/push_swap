@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 16:41:04 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:06:54 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,42 @@ void	rrr(t_vars *vars, bool print)
 		ft_printf("rrr\n");
 }
 
-void	print_list(t_vars vars)
+void	fill_stack(t_vars *vars)
 {
-	t_list	*list;
-	t_list	*list2;
+	int	i;
+	int	content;
 
-	list = vars.stack_a;
-	list2 = vars.stack_b;
-	while (list || list2)
+	i = 0;
+	while (*vars->numbers)
 	{
-		if (list)
-			ft_printf("%d\t\t", list->content);
-		else
-			ft_printf(" \t\t");
-		if (list2)
-			ft_printf("%d\n", list2->content);
-		else
-			ft_printf(" \n");
-		if (list)
-			list = list->next;
-		if (list2)
-			list2 = list2->next;
-	}
-	ft_printf("==\t==\n[a]\t\t[b]\n");
+		content = ft_atoi(*vars->numbers);
+		ft_lstadd_back(&vars->stack_a, ft_lstnew(content, i, 0));
+		vars->numbers++;
+		i++;
+	}	
 }
+
+// void	print_list(t_vars vars)
+// {
+// 	t_list	*list;
+// 	t_list	*list2;
+
+// 	list = vars.stack_a;
+// 	list2 = vars.stack_b;
+// 	while (list || list2)
+// 	{
+// 		if (list)
+// 			ft_printf("%d\t\t", list->content);
+// 		else
+// 			ft_printf(" \t\t");
+// 		if (list2)
+// 			ft_printf("%d\n", list2->content);
+// 		else
+// 			ft_printf(" \n");
+// 		if (list)
+// 			list = list->next;
+// 		if (list2)
+// 			list2 = list2->next;
+// 	}
+// 	ft_printf("==\t==\n[a]\t\t[b]\n");
+// }

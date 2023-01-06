@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 17:45:42 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:52:34 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	lis(t_vars *vars)
 
 	i = -1;
 	lis = malloc (vars->size_a * sizeof (int));
+	if (!lis)
+		return (0);
 	lis_init(lis, vars);
 	lis_calculate(lis, vars);
 	return (lis_find_max(lis, vars, i));
