@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils7.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/05 16:06:55 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/06 16:52:30 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 
 void	apply_moves(t_vars *vars)
 {
-	unsigned int	middle_a;
-	unsigned int	middle_b;
+	unsigned int	half_size_a;
+	unsigned int	half_size_b;
 	t_list			*elem;
-	t_list 			*voisin;
-	int a_content;
-	int	b_content;
+	int				a_content;
+	int				b_content;
 
 	elem = vars->best_elem;
 	b_content = elem->content;
-	middle_a = vars->size_a / 2;
-	middle_b = vars->size_b / 2;
-	voisin = find_elem(vars, elem->where_to_push, 'a');
-	a_content = voisin->content;
-	if ((elem->index > middle_b && elem->where_to_push > middle_a)
-		|| (elem->index <= middle_b && elem->where_to_push <= middle_a))
+	half_size_a = vars->size_a / 2;
+	half_size_b = vars->size_b / 2;
+	a_content = find_elem(vars, elem->where_to_push, 'a')->content;
+	if ((elem->index > half_size_b && elem->where_to_push > half_size_a)
+		|| (elem->index <= half_size_b && elem->where_to_push <= half_size_a))
 		common_moves(vars, b_content, a_content);
 	else
 		simple(vars, b_content, a_content);
@@ -37,20 +35,20 @@ void	apply_moves(t_vars *vars)
 
 void	simple(t_vars *vars, int b_content, int a_content)
 {
-	unsigned int		middle_a;
-	unsigned int		middle_b;
+	unsigned int		half_size_a;
+	unsigned int		half_size_b;
 	t_list				*elem;
 
 	elem = vars->best_elem;
-	middle_a = vars->size_a / 2;
-	middle_b = vars->size_b / 2;
-	if (elem->index > middle_b)
+	half_size_a = vars->size_a / 2;
+	half_size_b = vars->size_b / 2;
+	if (elem->index > half_size_b)
 		while (vars->stack_b->content != b_content)
 			rrb(vars, 1);
 	else
 		while (vars->stack_b->content != b_content)
 			rb(vars, 1);
-	if (elem->where_to_push > middle_a)
+	if (elem->where_to_push > half_size_a)
 		while (vars->stack_a->content != a_content)
 			rra(vars, 1);
 	else
@@ -60,13 +58,12 @@ void	simple(t_vars *vars, int b_content, int a_content)
 
 void	common_moves(t_vars *vars, int b_content, int a_content)
 {
-
-	unsigned int		middle_b;
+	unsigned int		half_size_b;
 	t_list				*elem;
 
-	middle_b = vars->size_b / 2;
+	half_size_b = vars->size_b / 2;
 	elem = vars->best_elem;
-	if (elem->index <= middle_b)
+	if (elem->index <= half_size_b)
 	{
 		while (vars->stack_a->content != a_content
 			&& vars->stack_b->content != b_content)
@@ -82,7 +79,8 @@ void	common_moves(t_vars *vars, int b_content, int a_content)
 
 void	common_rrr(t_vars *vars, int b_content, int a_content)
 {
-	while (vars->stack_a->content != a_content && vars->stack_b->content != b_content)
+	while (vars->stack_a->content != a_content
+		&& vars->stack_b->content != b_content)
 		rrr(vars, 1);
 	while (vars->stack_a->content != a_content)
 		rra(vars, 1);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/02 13:42:39 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/06 16:44:01 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 void	index_stacks(t_vars *vars)
 {
@@ -34,6 +34,7 @@ void	index_stacks(t_vars *vars)
 		i++;
 	}
 }
+
 unsigned int	abs_val(int val)
 {
 	if (val < 0)
@@ -62,10 +63,14 @@ t_list	*find_elem(t_vars *vars, int index, char c)
 
 unsigned int	minimum(unsigned int a, unsigned int b)
 {
-	return (a < b ? a : b);
+	if (a < b)
+		return (a);
+	return (b);
 }
 
 unsigned int	maximum(unsigned int a, unsigned int b)
 {
-	return (a > b ? a : b);
+	if (a > b)
+		return (a);
+	return (b);
 }

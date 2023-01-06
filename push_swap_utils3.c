@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 11:57:31 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/05 16:07:54 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/06 16:41:04 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	rra(t_vars *vars, bool print)
 {
 	t_list			*temp;
 	unsigned int	size;
-	unsigned int	i = 1;
+	unsigned int	i;
 
+	i = 1;
 	size = vars->size_a;
 	if (size < 2)
 		return ;
@@ -36,8 +37,9 @@ void	rrb(t_vars *vars, bool print)
 {
 	t_list			*temp;
 	unsigned int	size;
-	unsigned int	i = 1;
+	unsigned int	i;
 
+	i = 1;
 	size = vars->size_b;
 	if (size < 2)
 		return ;
@@ -64,19 +66,21 @@ void	rrr(t_vars *vars, bool print)
 
 void	print_list(t_vars vars)
 {
-	t_list *list = vars.stack_a;
-	t_list *list2 = vars.stack_b;
+	t_list	*list;
+	t_list	*list2;
+
+	list = vars.stack_a;
+	list2 = vars.stack_b;
 	while (list || list2)
 	{
-		// if (list->in_lis)
-			if (list)
-				ft_printf("%d\t\t", list->content);
-			else
-				ft_printf(" \t\t");
-			if (list2)
-				ft_printf("%d\n", list2->content);
-			else
-				ft_printf(" \n");
+		if (list)
+			ft_printf("%d\t\t", list->content);
+		else
+			ft_printf(" \t\t");
+		if (list2)
+			ft_printf("%d\n", list2->content);
+		else
+			ft_printf(" \n");
 		if (list)
 			list = list->next;
 		if (list2)

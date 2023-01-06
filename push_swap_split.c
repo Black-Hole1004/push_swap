@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_split.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 10:30:40 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/05 15:48:21 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/06 16:42:08 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ char	**ft_split(t_vars *vars)
 
 	if (!vars->pars)
 		return (0);
-	strings = (char **)malloc(sizeof(char *) * (count_words(vars->pars, ' ') + 1));
+	strings = (char **)malloc(sizeof(char *)
+			* (count_words(vars->pars, ' ') + 1));
 	if (!strings)
 		return (0);
 	while (*vars->pars != '\0')
@@ -70,7 +71,8 @@ char	**ft_split(t_vars *vars)
 			vars->pars++;
 		if (*vars->pars != '\0')
 		{
-			strings[vars->size_a] = ft_substr(vars->pars, 0, word_length(vars->pars, ' '));
+			strings[vars->size_a] = ft_substr(vars->pars,
+					0, word_length(vars->pars, ' '));
 			if (!strings[vars->size_a])
 				return (free_all(strings));
 		vars->size_a++;

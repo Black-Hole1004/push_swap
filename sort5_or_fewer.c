@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort5_or_fewer.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/06 17:15:02 by ahmaymou          #+#    #+#             */
+/*   Updated: 2023/01/06 17:15:13 by ahmaymou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-void    index_1_2(t_vars *vars, t_list *elem, t_list *second)
+void	index_1_2(t_vars *vars, t_list *elem, t_list *second)
 {
-    if (vars->min_a_index == 2)
+	if (vars->min_a_index == 2)
 	{
 		if (elem->content > second->content)
 			sa(vars, 1);
@@ -28,8 +39,8 @@ void	sort3(t_vars *vars)
 	elem = vars->stack_a;
 	second = elem->next;
 	min_index_a(vars);
-    if (vars->min_a_index == 2 || vars->min_a_index == 1)
-        index_1_2(vars, elem, second);
+	if (vars->min_a_index == 2 || vars->min_a_index == 1)
+		index_1_2(vars, elem, second);
 	else
 	{
 		if (vars->size_a > 2 && second->content > second->next->content)
@@ -42,14 +53,16 @@ void	sort3(t_vars *vars)
 
 void	pb_5(t_vars *vars)
 {
-	int moves;
+	int	moves;
 
 	min_index_a(vars);
 	if (vars->min_a_index <= vars->size_a / 2)
-	while (vars->min_a_index)
 	{
-		ra(vars, 1);
-		vars->min_a_index--;
+		while (vars->min_a_index)
+		{
+			ra(vars, 1);
+			vars->min_a_index--;
+		}
 	}
 	else
 	{

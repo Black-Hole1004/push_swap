@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lis_and_pb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/03 10:41:11 by blackhole        ###   ########.fr       */
+/*   Updated: 2023/01/06 17:45:42 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-void lis_init(int lis[], t_vars *vars)
+void	lis_init(int *lis, t_vars *vars)
 {
 	unsigned int	i;
 
@@ -21,24 +21,23 @@ void lis_init(int lis[], t_vars *vars)
 		lis[i++] = 1;
 }
 
-// Iterate through the linked list, starting from the second element
-void lis_calculate(int lis[], t_vars *vars)
+void	lis_calculate(int *lis, t_vars *vars)
 {
-	t_list 		*current;
-	t_list 		*prev;
-	unsigned int i;
+	t_list			*current;
+	t_list			*prev;
+	unsigned int	i;
+	unsigned int	j;
 
+	i = 1;
 	current = vars->stack_a->next;
-	i  = 1;
 	while (current)
 	{
-		// For each element, consider the longest increasing subsequence ending at each previous position
 		prev = vars->stack_a;
-		unsigned int j = 0;
-		while (prev != current) {
-			// If the element at the previous position is less than the current element and the LIS ending at that
-			// position is longer than the current LIS, update the current LIS
-			if (prev->content < current->content && lis[i] < lis[j] + 1) {
+		j = 0;
+		while (prev != current)
+		{
+			if (prev->content < current->content && lis[i] < lis[j] + 1)
+			{
 				lis[i] = lis[j] + 1;
 			}
 			prev = prev->next;
@@ -49,23 +48,18 @@ void lis_calculate(int lis[], t_vars *vars)
 	}
 }
 
-// Find the maximum value in the LIS array
-int	lis_find_max(int lis[], t_vars *vars)
+int	lis_find_max(int *lis, t_vars *vars, unsigned int i)
 {
 	int				max;
-	unsigned int	i;
-	t_list 			*current;
+	int				temp;
+	t_list			*current;
 
 	max = lis[0];
-	while (i < vars->size_a)
-	{
-		if (lis[i] > max) {
+	while (++i < vars->size_a)
+		if (lis[i] > max)
 			max = lis[i];
-		}
-		i++;
-	}
 	i = 0;
-	int temp = max;
+	temp = max;
 	while (lis[i] != max)
 		i++;
 	while (max)
@@ -78,20 +72,24 @@ int	lis_find_max(int lis[], t_vars *vars)
 		while (lis[i] != max && max > 0)
 			i--;
 	}
-	return (temp);
+	return (free(lis), temp);
 }
 
-int lis(t_vars *vars)
+int	lis(t_vars *vars)
 {
-	int lis[vars->size_a];
+	int				*lis;
+	unsigned int	i;
+
+	i = -1;
+	lis = malloc (vars->size_a * sizeof (int));
 	lis_init(lis, vars);
 	lis_calculate(lis, vars);
-	return lis_find_max(lis, vars);
+	return (lis_find_max(lis, vars, i));
 }
 
-void    do_pb(t_vars *vars)
+void	do_pb(t_vars *vars)
 {
-	unsigned int size;
+	unsigned int	size;
 
 	size = lis(vars);
 	while (vars->size_a != size)
