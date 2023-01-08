@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 20:11:50 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:51:13 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void	sort(t_vars *vars)
 	{
 		set_struct(vars);
 		vars->best_elem = get_the_best(vars);
-		vars->best_elem->where_to_push = abs_val(where_to_push(vars,
-					vars->best_elem));
+		vars->best_elem->where_to_push = where_to_push(vars, vars->best_elem);
 		apply_moves(vars);
 	}
 	min_index_a(vars);

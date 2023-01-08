@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: blackhole <blackhole@student.42.fr>        +#+  +:+       +#+         #
+#    By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#              #
-#    Updated: 2023/01/03 20:44:55 by blackhole        ###   ########.fr        #
+#    Updated: 2023/01/08 20:12:54 by ahmaymou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PUSH_SWAP
 
-SRCS_OBJ = $(shell ls | grep .c | grep -v main | grep -v checker)
+SRCS_OBJ = $(shell ls | grep .c | grep -v main | grep -v chec)
 SRC = main.c
 SRC_B = main_bonus.c
 
@@ -39,8 +39,7 @@ libft_printf :
 	@cd printf && make re && mv libftprintf.a .. && cd ..
 
 prog :  $(OBJ) push_swap.h
-	$(CC) $(FLAGS) $(SRC) $(OBJ) $(LIBS) -g -o $(EXEC)
-	# @rm -rf $(LIBS)
+	$(CC) $(FLAGS) $(SRC) $(OBJ) $(LIBS) -o $(EXEC)
 
 bonus : $(NAME) checker_prog
 
@@ -49,7 +48,9 @@ checker_prog : push_swap.h
 	@rm -rf $(LIBS)
 
 clean :
-	rm -rf  libft/*.o printf/*.o $(OBJ)
+	@cd libft && make clean
+	@cd printf && make clean
+	@rm -rf $(OBJ)
 fclean : clean
 	@rm -rf $(LIBS) $(EXEC) $(EXEC_B)
 

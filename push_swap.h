@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:51 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 20:05:55 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:30:28 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void			rr(t_vars *vars, bool print);
 void			rra(t_vars *vars, bool print);
 void			rrb(t_vars *vars, bool print);
 void			rrr(t_vars *vars, bool print);
-void			print_list(t_vars vars);
 void			stacks_init(t_vars *vars);
 void			lis_init(int *lis, t_vars *list);
 void			lis_calculate(int *lis, t_vars *list);

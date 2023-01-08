@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 16:47:56 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:24:15 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,38 @@ int	where_to_push(t_vars *vars, t_list *temp)
 int	normal_calc(t_vars *vars, t_list *elem)
 {
 	int				moves;
-	unsigned int	middle_a;
-	unsigned int	middle_b;
+	unsigned int	half_a;
+	unsigned int	half_b;
 
-	middle_a = vars->size_a / 2;
-	middle_b = vars->size_b / 2;
+	half_a = vars->size_a / 2;
+	half_b = vars->size_b / 2;
 	moves = 0;
-	if (elem->index <= middle_b)
+	if (elem->index <= half_b)
 		moves += elem->index;
 	else
-		moves += vars->size_b - (elem->index + 1);
-	if (elem->where_to_push <= middle_a)
+		moves += vars->size_b - elem->index - 1;
+	if (elem->where_to_push <= half_a)
 		moves += elem->where_to_push;
 	else
-		moves += vars->size_a - (elem->where_to_push + 1);
+		moves += vars->size_a - elem->where_to_push - 1;
 	return (moves);
 }
 
 void	assign_number_moves(t_vars *vars, t_list *elem)
 {
-	unsigned int	middle_a;
-	unsigned int	middle_b;
+	unsigned int	half_a;
+	unsigned int	half_b;
 	int				pos;
 	int				pos_to_push;
 
-	middle_a = vars->size_a / 2;
-	middle_b = vars->size_b / 2;
+	half_a = vars->size_a / 2;
+	half_b = vars->size_b / 2;
 	pos = vars->size_b - elem->index - 1;
 	pos_to_push = vars->size_a - elem->where_to_push - 1;
-	if ((elem->index > middle_b && elem->where_to_push > middle_a)
-		|| (elem->index <= middle_b && elem->where_to_push <= middle_a))
+	if ((elem->index > half_b && elem->where_to_push > half_a)
+		|| (elem->index <= half_b && elem->where_to_push <= half_a))
 	{
-		if ((elem->index > middle_b && elem->where_to_push > middle_a))
+		if ((elem->index > half_b && elem->where_to_push > half_a))
 			elem->num_moves = maximum(pos, pos_to_push);
 		else
 			elem->num_moves = maximum(elem->index, elem->where_to_push);
@@ -103,7 +103,7 @@ t_list	*get_the_best(t_vars *vars)
 	int		best;
 
 	tmp = vars->stack_b;
-	best = vars->size_a + vars->size_b;
+	best = INT_MAX;
 	while (tmp)
 	{
 		if (best > tmp->num_moves)

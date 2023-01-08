@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:15:02 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 17:15:13 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:59:33 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	sort3(t_vars *vars)
 	t_list	*elem;
 	t_list	*second;
 
+	if (is_sorted(*vars))
+		return ;
 	elem = vars->stack_a;
 	second = elem->next;
 	min_index_a(vars);
@@ -75,6 +77,8 @@ void	pb_5(t_vars *vars)
 
 void	sort5(t_vars *vars)
 {
+	if (is_sorted(*vars))
+		return ;
 	while (vars->size_a >= 4)
 		pb_5(vars);
 	sort3(vars);

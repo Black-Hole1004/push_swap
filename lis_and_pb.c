@@ -6,7 +6,7 @@
 /*   By: ahmaymou <ahmaymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 13:36:46 by ahmaymou          #+#    #+#             */
-/*   Updated: 2023/01/06 19:52:34 by ahmaymou         ###   ########.fr       */
+/*   Updated: 2023/01/08 12:31:26 by ahmaymou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void	lis_calculate(int *lis, t_vars *vars)
 		while (prev != current)
 		{
 			if (prev->content < current->content && lis[i] < lis[j] + 1)
-			{
 				lis[i] = lis[j] + 1;
-			}
 			prev = prev->next;
 			j++;
 		}
